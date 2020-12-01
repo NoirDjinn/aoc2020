@@ -30,7 +30,7 @@ public class ReportRepair {
         return 0;
     }
 
-    public long GetStarFishCoin() {
+    public long GetStarfishCoin() {
         for (int i = 0; i < data.size(); i++) {
             for (int j = 0; j < data.size(); j++) {
                 for (int k = 0; k < data.size(); k++) {

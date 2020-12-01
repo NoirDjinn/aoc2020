@@ -17,7 +17,7 @@ public class ReportRepairTest {
 
     @Test
     void day1_part2_test() {
-        long res = rr.GetStarFishCoin();
+        long res = rr.GetStarfishCoin();
         assertEquals(138688160, res);
     }
 }
