@@ -12,12 +12,12 @@ public class ReportRepairTest {
     @Test
     void day1_part1_test() {
         long res = rr.FindEntries();
-        assertEquals(res, 445536);
+        assertEquals(445536, res);
     }
 
     @Test
     void day1_part2_test() {
         long res = rr.GetStarFishCoin();
-        assertEquals(res, 1337);
+        assertEquals(138688160, res);
     }
 }

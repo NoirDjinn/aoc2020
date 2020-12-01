@@ -16,7 +16,7 @@ public class ReportRepair {
     }
 
     public long FindEntries() {
-        Set<Integer> remainders = new HashSet<Integer>();
+        Set<Integer> remainders = new HashSet<>();
         int rem;
 
         for (Integer num : data) {
@@ -31,11 +31,10 @@ public class ReportRepair {
     }
 
     public long GetStarFishCoin() {
-
         for (int i = 0; i < data.size(); i++) {
-            for (int j = i + 1; j < data.size(); j++) {
+            for (int j = 0; j < data.size(); j++) {
                 for (int k = 0; k < data.size(); k++) {
-                    if (k != i && k != j && (data.get(i) + data.get(j) + data.get(k)) == idealSum) {
+                    if (k != i && k != j && i != j && (data.get(i) + data.get(j) + data.get(k)) == idealSum) {
                         return data.get(i) * data.get(j) * data.get(k);
                     }
                 }
