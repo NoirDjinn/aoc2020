@@ -38,15 +38,10 @@ class PasswordPolicy {
         }
         char lowerChar = word.substring(this.lowestNumber - 1, this.lowestNumber).toCharArray()[0];
         char highChar = word.substring(this.highestNumber - 1, this.highestNumber).toCharArray()[0];
-        if (lowerChar != highChar && (lowerChar == this.character || highChar == this.character)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
 
-    public String toString() {
-        return lowestNumber + "-" + highestNumber + "-" + character + "-" + word;
+        return lowerChar != highChar && (lowerChar == this.character || highChar == this.character)
+                ? 1
+                : 0;
     }
 }
 
@@ -82,15 +77,15 @@ public class PasswordPhilosophy {
     }
 
     public long countCorrectPasswords() {
-        return data == null
+        return this.data == null
                 ? 0
-                : data.stream().map(PasswordPolicy::checkPassword).reduce(0, Integer::sum);
+                : this.data.stream().map(PasswordPolicy::checkPassword).reduce(0, Integer::sum);
     }
 
 
     public long countValidPasswords() {
-        return data == null
+        return this.data == null
                 ? 0
-                : data.stream().map(PasswordPolicy::validatePassword).reduce(0, Integer::sum);
+                : this.data.stream().map(PasswordPolicy::validatePassword).reduce(0, Integer::sum);
     }
 }
