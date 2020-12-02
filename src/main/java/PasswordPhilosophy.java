@@ -1,5 +1,8 @@
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -37,8 +40,7 @@ class PasswordPolicy {
         char highChar = word.substring(this.highestNumber - 1, this.highestNumber).toCharArray()[0];
         if (lowerChar != highChar && (lowerChar == this.character || highChar == this.character)) {
             return 1;
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -80,26 +82,15 @@ public class PasswordPhilosophy {
     }
 
     public long countCorrectPasswords() {
-        if (data == null) {
-            return 0;
-        } else {
-            long res = 0;
-            for (PasswordPolicy pp : data) {
-                res = res + pp.checkPassword();
-            }
-            return res;
-        }
+        return data == null
+                ? 0
+                : data.stream().map(PasswordPolicy::checkPassword).reduce(0, Integer::sum);
     }
 
+
     public long countValidPasswords() {
-        if (data == null) {
-            return 0;
-        } else {
-            long res = 0;
-            for (PasswordPolicy pp : data) {
-                res = res + pp.validatePassword();
-            }
-            return res;
-        }
+        return data == null
+                ? 0
+                : data.stream().map(PasswordPolicy::validatePassword).reduce(0, Integer::sum);
     }
 }

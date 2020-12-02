@@ -17,6 +17,6 @@ public class PasswordPhilosophyTest {
     @Test
     void day2_part2_test() {
         long res = pp.countValidPasswords();
-        assertEquals(618, res);
+        assertEquals(688, res);
     }
 }
