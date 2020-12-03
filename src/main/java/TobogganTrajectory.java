@@ -14,23 +14,23 @@ public class TobogganTrajectory {
   private final int rightSteps;
 
   public TobogganTrajectory(int r, int d) {
-    String report = new Scanner(ReportRepair.class.getResourceAsStream("day3_input.txt"),
+    String map = new Scanner(TobogganTrajectory.class.getResourceAsStream("day3_input.txt"),
         StandardCharsets.UTF_8).useDelimiter("\\A").next();
-    data = Arrays.stream(report.split("\n")).collect(Collectors.toList());
-    downSteps = d;
-    rightSteps = r;
+    this.data = Arrays.stream(map.split("\n")).collect(Collectors.toList());
+    this.downSteps = d;
+    this.rightSteps = r;
   }
 
   public long CountTrees() {
-    int width = data.get(0).length();
+    int width = this.data.get(0).length();
     long treeNumber = 0;
     int currentWidth = 0;
 
-    for (int i = 0; i < data.size(); i = i + downSteps) {
-      if (data.get(i).charAt(currentWidth % width) == '#') {
+    for (int i = 0; i < this.data.size(); i = i + this.downSteps) {
+      if (this.data.get(i).charAt(currentWidth % width) == '#') {
         treeNumber += 1;
       }
-      currentWidth += rightSteps;
+      currentWidth += this.rightSteps;
     }
     return treeNumber;
   }
