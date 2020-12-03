@@ -36,10 +36,10 @@ public class ReportRepair {
   }
 
   public long GetStarfishCoin() {
-    for (int i = 0; i < data.size(); i++) {
-      for (int j = 0; j < data.size(); j++) {
-        for (int k = 0; k < data.size(); k++) {
-          if (k != i && k != j && i != j && (data.get(i) + data.get(j) + data.get(k)) == idealSum) {
+    for (int i = 0; i < data.size() - 2; i++) {
+      for (int j = i + 1; j < data.size() - 1; j++) {
+        for (int k = j + 1; k < data.size(); k++) {
+          if (data.get(i) + data.get(j) + data.get(k) == idealSum) {
             return data.get(i) * data.get(j) * data.get(k);
           }
         }
