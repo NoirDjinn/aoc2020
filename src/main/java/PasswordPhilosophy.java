@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 
 class PasswordPolicy {
 
-  public final int lowestNumber;
-  public final int highestNumber;
+  public final long lowestNumber;
+  public final long highestNumber;
   public final char character;
   public final String word;
 
-  public PasswordPolicy(char c, int l, int h, String w) {
+  public PasswordPolicy(char c, long l, long h, String w) {
     this.character = c;
     this.lowestNumber = l;
     this.highestNumber = h;
@@ -29,20 +29,19 @@ class PasswordPolicy {
       return 0;
     }
     long charInPassCount = this.word.chars().filter(ch -> ch == this.character).count();
-    if (charInPassCount >= (long) this.lowestNumber
-        && charInPassCount <= (long) this.highestNumber) {
-      return 1;
-    } else {
-      return 0;
-    }
+    return charInPassCount >= this.lowestNumber && charInPassCount <= this.highestNumber
+        ? 1
+        : 0;
   }
 
   public int validatePassword() {
     if (this.word == null) {
       return 0;
     }
-    char lowerChar = word.substring(this.lowestNumber - 1, this.lowestNumber).toCharArray()[0];
-    char highChar = word.substring(this.highestNumber - 1, this.highestNumber).toCharArray()[0];
+    char lowerChar = word.substring((int) this.lowestNumber - 1, (int) this.lowestNumber)
+        .toCharArray()[0];
+    char highChar = word.substring((int) this.highestNumber - 1, (int) this.highestNumber)
+        .toCharArray()[0];
 
     return lowerChar != highChar && (lowerChar == this.character || highChar == this.character)
         ? 1
@@ -62,7 +61,7 @@ public class PasswordPhilosophy {
     List<String> policyParams;
     Pattern pattern = Pattern.compile("(\\d+)-(\\d+) (.): (\\w*)");
     Matcher matcher;
-    int l, h;
+    long l, h;
     char c;
     String w;
 
