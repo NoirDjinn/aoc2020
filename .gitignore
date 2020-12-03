@@ -1,3 +1,6 @@
 .idea/
 aoc.iml
 target/
+.classpath
+.project
+.settings/
