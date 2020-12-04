@@ -1,14 +1,10 @@
 // day 2 of 2020 advent of code
 // https://adventofcode.com/2020/day/2
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 class PasswordPolicy {
 
@@ -54,9 +50,7 @@ public class PasswordPhilosophy {
   public List<PasswordPolicy> data = new ArrayList<>();
 
   public PasswordPhilosophy() {
-    String inp = new Scanner(PasswordPhilosophy.class.getResourceAsStream("day2_input.txt"),
-        StandardCharsets.UTF_8).useDelimiter("\\A").next();
-    List<String> policyList = Arrays.stream(inp.split("\n")).collect(Collectors.toList());
+    List<String> policyList = Utils.readInput(2);
 
     List<String> policyParams;
     Pattern pattern = Pattern.compile("(\\d+)-(\\d+) (.): (\\w*)");

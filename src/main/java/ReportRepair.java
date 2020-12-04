@@ -1,11 +1,8 @@
 // day 1 of 2020 advent of code
 // https://adventofcode.com/2020/day/1
 
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,9 +12,7 @@ public class ReportRepair {
   private final int idealSum = 2020;
 
   public ReportRepair() {
-    String report = new Scanner(ReportRepair.class.getResourceAsStream("day1_input.txt"),
-        StandardCharsets.UTF_8).useDelimiter("\\A").next();
-    data = Arrays.stream(report.split("\n")).map(Integer::parseInt).collect(Collectors.toList());
+    data = Utils.readInput(1).stream().map(Integer::parseInt).collect(Collectors.toList());
   }
 
   public long FindEntries() {
