@@ -20,7 +20,7 @@ class PasswordPolicy {
     this.word = w;
   }
 
-  public int checkPassword() {
+  public long checkPassword() {
     if (this.word == null) {
       return 0;
     }
@@ -30,7 +30,7 @@ class PasswordPolicy {
         : 0;
   }
 
-  public int validatePassword() {
+  public long validatePassword() {
     if (this.word == null) {
       return 0;
     }
@@ -79,13 +79,13 @@ public class PasswordPhilosophy {
   public long countCorrectPasswords() {
     return this.data == null
         ? 0
-        : this.data.stream().map(PasswordPolicy::checkPassword).reduce(0, Integer::sum);
+        : this.data.stream().map(PasswordPolicy::checkPassword).reduce(0L, Long::sum);
   }
 
 
   public long countValidPasswords() {
     return this.data == null
         ? 0
-        : this.data.stream().map(PasswordPolicy::validatePassword).reduce(0, Integer::sum);
+        : this.data.stream().map(PasswordPolicy::validatePassword).reduce(0L, Long::sum);
   }
 }
