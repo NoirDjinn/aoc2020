@@ -19,6 +19,7 @@ public class PassportProcessing {
 
   public PassportProcessing() {
     List<String> data = Utils.readInput(4);
+    data.add("");
     StringBuilder currentPassport = new StringBuilder();
 
     for (String line : data) {
@@ -29,12 +30,9 @@ public class PassportProcessing {
         currentPassport.setLength(0);
       }
     }
-    if (!"".equals(currentPassport.toString())) {
-      this.passports.add(currentPassport.toString().replace("\n", "").trim());
-    }
   }
 
-  public Map<String, String> BreakPassportIntoMap(String passport) {
+  public static Map<String, String> BreakPassportIntoMap(String passport) {
     if (passport == null) {
       return null;
     }
@@ -50,7 +48,7 @@ public class PassportProcessing {
     return data;
   }
 
-  long ValidatePassport(String pass) {
+  static long ValidatePassport(String pass) {
     Map<String, String> data = BreakPassportIntoMap(pass);
     if (data == null) {
       return 0;
@@ -63,7 +61,7 @@ public class PassportProcessing {
     return 1;
   }
 
-  long ValidateDataInPassport(String pass) {
+  static long ValidateDataInPassport(String pass) {
     if (ValidatePassport(pass) == 0) {
       return 0;
     }
@@ -117,18 +115,15 @@ public class PassportProcessing {
   }
 
   public long CountValidPassports() {
-    long res = 0;
-    for (String passport : this.passports) {
-      res += ValidatePassport(passport);
-    }
-    return res;
+    return this.passports == null
+        ? 0
+        : this.passports.stream().map(PassportProcessing::ValidatePassport).reduce(0L, Long::sum);
   }
 
   public long CountValidPassportData() {
-    long res = 0;
-    for (String passport : this.passports) {
-      res += ValidateDataInPassport(passport);
-    }
-    return res;
+    return this.passports == null
+        ? 0
+        : this.passports.stream().map(PassportProcessing::ValidateDataInPassport)
+            .reduce(0L, Long::sum);
   }
 }
