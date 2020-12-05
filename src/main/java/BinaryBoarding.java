@@ -1,5 +1,7 @@
+// day 5 of 2020 advent of code
+// https://adventofcode.com/2020/day/5
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
