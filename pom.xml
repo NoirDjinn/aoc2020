@@ -6,7 +6,7 @@
 
     <groupId>dev.noirdjinn</groupId>
     <artifactId>aoc</artifactId>
-    <version>1.4.3-SNAPSHOT</version>
+    <version>1.5.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
