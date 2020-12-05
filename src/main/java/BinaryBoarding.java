@@ -15,30 +15,18 @@ class SeatNumber {
     this.col = y;
   }
 
-  public static long GetX(String x) {
-    long min = 0;
-    long max = 127;
-    for (int i = 0; i < x.length(); i++) {
-      if (x.charAt(i) == 'F') {
-        max -= Math.round((max - min) / 2.0);
-      } else if (x.charAt(i) == 'B') {
-        min += Math.round((max - min) / 2.0);
-      }
-    }
-    return min;
-  }
+  public static long FindPlace(String place, long min, long max, char upper, char lower) {
+    long mx = max;
+    long mn = min;
 
-  public static long GetY(String y) {
-    long min = 0;
-    long max = 7;
-    for (int i = 0; i < y.length(); i++) {
-      if (y.charAt(i) == 'L') {
-        max -= Math.round((max - min) / 2.0);
-      } else if (y.charAt(i) == 'R') {
-        min += Math.round((max - min) / 2.0);
+    for (int i = 0; i < place.length(); i++) {
+      if (place.charAt(i) == lower) {
+        mx -= Math.round((mx - mn) / 2.0);
+      } else if (place.charAt(i) == upper) {
+        mn += Math.round((mx - mn) / 2.0);
       }
     }
-    return min;
+    return mn;
   }
 
   public long GetID() {
@@ -57,8 +45,8 @@ public class BinaryBoarding {
     long y;
 
     for (String seat : data) {
-      x = SeatNumber.GetX(seat.substring(0, 7));
-      y = SeatNumber.GetY(seat.substring(7));
+      x = SeatNumber.FindPlace(seat.substring(0, 7), 0, 127, 'B', 'F');
+      y = SeatNumber.FindPlace(seat.substring(7), 0, 7, 'R', 'L');
       this.seats.add(new SeatNumber(x, y));
     }
   }
