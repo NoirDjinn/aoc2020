@@ -49,7 +49,7 @@ class SeatNumber {
 
 public class BinaryBoarding {
 
-  private List<SeatNumber> seats = new ArrayList<>();
+  private final List<SeatNumber> seats = new ArrayList<>();
 
   public BinaryBoarding() {
     List<String> data = Utils.readInput(5);
@@ -64,17 +64,10 @@ public class BinaryBoarding {
   }
 
   public long GetMaxID() {
-    if (this.seats == null) {
-      return 0;
-    }
     return this.seats.stream().map(SeatNumber::GetID).max(Long::compare).get();
   }
 
   public long FindMissingID() {
-    if (this.seats == null) {
-      return 0;
-    }
-
     List<Long> IDs = this.seats.stream().map(SeatNumber::GetID).collect(Collectors.toList());
 
     long max = IDs.stream().max(Long::compare).get();
