@@ -11,22 +11,22 @@ public class HandyHaversacks {
 
   private final Map<String, Map<String, Integer>> rules = new HashMap<>();
   private final static String targetColor = "shiny gold";
+  private final static String outerRegex = "^(.+) bags contain (.+)\\.$";
+  private final static String innerRegex = "^(\\d+) (.+) bags?$";
 
 
   public HandyHaversacks() {
     List<String> data = Utils.readInput(7);
 
     for (String line : data) {
-      String regexOuter = "^(.+) bags contain (.+)\\.$";
-      Matcher matcher = Pattern.compile(regexOuter).matcher(line);
+      Matcher matcher = Pattern.compile(outerRegex).matcher(line);
 
       if (matcher.find()) {
         Map<String, Integer> innerMap = rules
             .computeIfAbsent(matcher.group(1), s -> new HashMap<>());
 
-        for (var element : matcher.group(2).split(", ")) {
-          String regexInner = "^(\\d+) (.+) bags?$";
-          matcher = Pattern.compile(regexInner).matcher(element);
+        for (String element : matcher.group(2).split(", ")) {
+          matcher = Pattern.compile(innerRegex).matcher(element);
 
           if (matcher.find()) {
             innerMap.put(matcher.group(2), Integer.parseInt(matcher.group(1)));
