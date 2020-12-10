@@ -1,3 +1,6 @@
+// day 9 of 2020 advent of code
+// https://adventofcode.com/2020/day/9
+
 import java.util.List;
 import java.util.stream.Collectors;
 

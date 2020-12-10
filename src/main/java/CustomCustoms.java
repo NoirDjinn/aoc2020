@@ -1,3 +1,6 @@
+// day 6 of 2020 advent of code
+// https://adventofcode.com/2020/day/6
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
